@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>shows</title>
+    </head>
+    <body>
+
+        <input autocomplete="off" autofocus placeholder="Query" type="search">
+
+        <ul></ul>
+
+        <script>
+    
+            //Esse JS esta fazendo o seguinte 
+            //Esta selecionando primeiro com seletor de consulta 'input'
+            //Isso para obter a caixa de texto, em seguida esta adicionando um ouvinte de evento a essa entrada para o evento de entrada.
+            //"Normalmente quando for oferecer qualquer tipo de entrada digitando, colando por qualuqer interface do usuario ele aciona o evento chamado entrada"
+            //Entao temos a funcao nao se preocupe com essa função por enquanto.  
+
+            let input = document.querySelector('input');   
+            input.addEventListener('input', async function() {
+                let response = await fetch('/search?q=' + input.value); // Quero buscar barra de pesquisa ? que e = a qualquer que seja o valor dessa entrada. 
+                let shows = await response.text(); // Obter o texto dessa resposta e armazenar em uma variavel chamada shows. 
+                document.querySelector('ul').innerHTML = shows; //Usando seletor de consulta para selecionar meu UL, que esta vazio por padrão, alterando seu HTML interno para ficar igual aos shows que voltaram do servidor. 
+            });
+
+            // Querendo que o codigo Python copie e cole na tag UL vazia e isso que esse codigo JS esta fazendo
+        </script>
+    </body>
+</html>
